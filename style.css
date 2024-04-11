@@ -1,3 +1,7 @@
+/*
+Created by Catherine Rodriquez
+*/
+
 *{
     padding: 0;
     margin: 0;
@@ -7,13 +11,20 @@
 .hide-background{
     display: none;
 }
+
+.Welcome-Background{
+    background-color: rgb(240, 217, 240);
+    height: 100vh;
+    padding-top: 1px
+}
+
 .background-TicTacToe{
     background-color: lightgrey;
     height: 100vh;
     padding-top: 1px
 }
 
-.title-TicTacToe{
+.title-TicTacToe, .title-start{
     color: black;
     text-align: center;
     font-size: 40px;
@@ -113,7 +124,7 @@
     cursor: pointer;
 }
 
-#directions-tictactoe, #back-to-start{
+#directions-tictactoe, #TTTmenu-to-start, #creator-menu, #creator-to-start{
     background-color: grey;
     color: black;
     padding: 8px;
