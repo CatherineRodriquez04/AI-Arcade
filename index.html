@@ -7,96 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet">
     <title>Tic Tac Toe Game!</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        //fix this
-        $(document).ready(function() {
-            //start to tictactoe
-            $('#tic-tac-toe-play').click(function(){
-                $('#start-screen').addClass('hide-background');
-                $('#TicTacToe').removeClass('hide-background');
-            });
-            //creator menu to start screen
-            $('#creator-menu').click(function() {
-                $('#start-screen').addClass('hide-background');
-                $('#Creator-Screen').removeClass('hide-background');
-            });
-            //menu to tictactoe
-            $('#back-TicTacToe').click(function(){
-                $('#TicTacToe-Directions').addClass('hide-background');
-                $('#TicTacToe').removeClass('hide-background');
-            })
-            //tictactoe to menu
-            $('#directions-tictactoe').click(function() {
-                $('#TicTacToe').addClass('hide-background');
-                $('#TicTacToe-Directions').removeClass('hide-background');
-            });
-            //menu to start screen
-            $('#TTTmenu-to-start').click(function() {
-                $('#TicTacToe-Directions').addClass('hide-background');
-                $('#start-screen').removeClass('hide-background');
-            });
-            //creator info to start screen
-            $('#creator-to-start').click(function() {
-                $('#Creator-Screen').addClass('hide-background');
-                $('#start-screen').removeClass('hide-background');
-            });
-            //player choose symbol (X or O)
-            $('#chooseX').click(function() {
-                chooseSymbol('X', '#symbol-1', this, '#chooseO2');
-            });
-
-            $('#chooseO').click(function() {
-                chooseSymbol('O', '#symbol-1', this, '#chooseX2');
-            });
-
-            $('#chooseX2').click(function() {
-                chooseSymbol('X', '#symbol-2', this, '#chooseO');
-            });
-
-            $('#chooseO2').click(function() {
-                chooseSymbol('O', '#symbol-2', this, '#chooseX');
-            });
-
-            //clicked button
-            function chooseSymbol(symbol, player, button, otherButton) {
-                console.log('Clicked symbol:', symbol);
-                console.log('Button2:', otherButton);
-                var otherPlayer = (player === '#symbol-1') ? '#symbol-2' : '#symbol-1';
-                //$(player + ' span').text(symbol);
-                //$(otherPlayer + ' span').text((symbol === 'X') ? 'O' : 'X');
-                if(otherPlayer == '#symbol-1'){
-                    if(symbol == 'X'){
-                        symbol = 'O';
-                    }
-                }
-                $('.symbol-button').removeClass('clicked'); //remove .clicked class from all symbol buttons
-                $(button).addClass('clicked'); //add .clicked class to the clicked button
-                $(otherButton).addClass('clicked'); //add .clicked to the other button opposing this the clicked button
-                $.ajax({
-                    type: "POST",
-                    url: "/choose_symbol",
-                    contentType: "application/json",
-                    data: JSON.stringify({ "symbol": symbol }),
-                    success: function(response) {
-                        console.log(response.message);
-                    }
-                });
-            }
-            //player choose mode
-
-
-            //reset button -> will need to keep implementing
-            $('#reset').click(function() {
-                // Reset the symbols to default (empty)
-                $('.symbol-1 span').text('');
-                $('.symbol-2 span').text('');
-        
-                // Remove the 'clicked' class from all symbol buttons
-                $('.symbol-button').removeClass('clicked');
-            });
-        });
-        
-    </script>
+    <script src="TicTacToeGame.js"></script>
+    <script src="Menu.js"></script>
 </head>
 <body>
     <div id="start-screen">
@@ -107,8 +19,9 @@
             <section class="title-start">
                 <h1>Welcome to AI Arcade!</h1>
             </section>
-            
-            <button id="tic-tac-toe-play">Tic Tac Toe</button>
+            <section class="playTTT">
+                <button id="tic-tac-toe-play">Tic Tac Toe</button>
+            </section>
         </main>
     </div>
     <div id="Creator-Screen" class="hide-background">
@@ -127,7 +40,7 @@
     <div id="TicTacToe" class="hide-background">
         <main class = "background-TicTacToe">
             <section class="tictactoe-menu">
-                <button id="directions-tictactoe">Menu</button>
+                <button id="directions-tictactoe">MENU</button>
             </section>
             <section class = "title-TicTacToe">
                 <h1>Tic Tac Toe</h1>
@@ -149,9 +62,9 @@
                     <button id="chooseO" class="symbol-button">O</button>
                 </div>
                 <div class="player-modes-TicTacToe">
-                    <button id="Two-Player-TicTacToe">Two Player</button>
-                    <button id="Ai-against-Ai-TicTacToe">Against Ai</button>
-                    <button id="Ai-vs-Ai-TicTacToe">Ai vs. Ai</button>
+                    <button id="Two-Player-TicTacToe" class="mode-button">Two Player</button>
+                    <button id="Ai-against-Ai-TicTacToe" class="mode-button">Against Ai</button>
+                    <button id="Ai-vs-Ai-TicTacToe" class="mode-button">Ai vs. Ai</button>
                 </div>
                 <div class="choose-symbol2">
                     <button id="chooseX2" class="symbol-button">X</button>
@@ -176,6 +89,12 @@
             <section class="controls-TicTacToe">
                 <button id="reset">Reset</button>
             </section>
+            <section class="control-AIvsAI">
+                <button id="AIvsAI">Begin Ai vs. Ai</button>
+            </section>
+            <section class="currentPlayer-TTT"></section>
+            <section class="error-TTT"></section>
+            <section class="announce-TTT"></section>
         </main>
     </div>
     <div id="TicTacToe-Directions" class="hide-background">
