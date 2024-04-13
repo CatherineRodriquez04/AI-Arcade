@@ -13,13 +13,13 @@ Created by Catherine Rodriquez
 }
 
 .Welcome-Background{
-    background-color: rgb(240, 217, 240);
+    background-color: rgb(199, 221, 242);
     height: 100vh;
     padding-top: 1px
 }
 
 .background-TicTacToe{
-    background-color: lightgrey;
+    background-color: whitesmoke;
     height: 100vh;
     padding-top: 1px
 }
@@ -49,23 +49,15 @@ Created by Catherine Rodriquez
     color: black; 
     font-size: 32px;
     text-align: center;
-    margin-top: 1em;
+    margin-top: 0.5em;
 }
 
 .symbol-1, .symbol-2{
     margin-top: 1em;
-    margin-left: 2em;
-    margin-right: 2em;
+    margin-left: 5em;
+    margin-right: 5em;
     margin-bottom: 0em;
 }
-
-/* .display-modes{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1em;
-}*/
 
 .hide{
     display: none;
@@ -82,6 +74,7 @@ Created by Catherine Rodriquez
 
 .cell{
     border: 3px solid royalblue;
+    background-color: lightgray;
     min-width: 100px;
     min-height: 100px;
     display: flex;
@@ -123,7 +116,7 @@ Created by Catherine Rodriquez
     margin-top: 1em;
 }
 
-#Ai-vs-Ai-TicTacToe, #Ai-against-Ai-TicTacToe, #Two-Player-TicTacToe, #reset, #back-TicTacToe, #tic-tac-toe-play, #AIvsAI {
+#Ai-vs-Ai-TicTacToe, #Ai-against-Ai-TicTacToe, #Two-Player-TicTacToe, #reset, #back-TicTacToe, #AIvsAI {
     background-color: red;
     color: white;
     padding: 8px;
@@ -132,6 +125,24 @@ Created by Catherine Rodriquez
     font-size: 20px;
     margin-left: 1em;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#tic-tac-toe-play{
+    width: 300px; 
+    height: 150px; 
+    background-image: url('assets/TicTacToe_Game.png'); 
+    background-size: cover; 
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+#tic-tac-toe-play:hover, #directions-tictactoe:hover, #TTTmenu-to-start:hover, #creator-menu:hover, #creator-to-start:hover, 
+#Ai-vs-Ai-TicTacToe:hover, #Ai-against-Ai-TicTacToe:hover, #Two-Player-TicTacToe:hover, #reset:hover, #back-TicTacToe:hover, #AIvsAI:hover,
+#chooseX:hover, #chooseX2:hover, #chooseO:hover, #chooseO2:hover {
+    transform: scale(1.1); 
 }
 
 #directions-tictactoe, #TTTmenu-to-start, #creator-menu, #creator-to-start{
@@ -144,6 +155,7 @@ Created by Catherine Rodriquez
     margin-left: 1em;
     margin-top: 1em;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .directions{
@@ -166,10 +178,11 @@ Created by Catherine Rodriquez
     font-size: 20px;
     margin-left: 1em;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 #chooseX{
-    margin-left: 4.5em;
+    margin-left: 8.5em;
     margin-right: 0.5em;
 }
 
@@ -179,16 +192,26 @@ Created by Catherine Rodriquez
 }
 
 #chooseO2{
-    margin-right: 4.5em;
+    margin-right: 8.5em;
     margin-left: 0.5em;
 }
 
 #chooseX.clicked, #chooseX2.clicked, #chooseO.clicked, #chooseO2.clicked {
-    background-color: rgb(129, 210, 245); /* change the background color when clicked */
-    color: black; /* change the text color when clicked */
+    background-color: rgb(129, 210, 245); 
+    color: black; 
 }
 
 #Ai-vs-Ai-TicTacToe.clicked, #Ai-against-Ai-TicTacToe.clicked, #Two-Player-TicTacToe.clicked {
     background-color: rgb(228, 154, 154);
     color: black;
+}
+
+.game-selection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black; 
+    font-size: 25px;
+    text-align: center;
+    margin-top: 1em;
 }

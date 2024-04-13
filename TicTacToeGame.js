@@ -14,6 +14,7 @@ class TicTacToe {
         this.playerName1 = 'AI-1';
         this.playerName2 = 'AI-2';
         this.ai = 0;
+        this.rand_holder = 0;
     }
 
     clearBoard() {
@@ -89,10 +90,12 @@ class TicTacToe {
                 if (game.ai == 1){ 
                     this.makeMove(move, this.player1);
                 }
+                else if(game.ai == 2){
+                    this.makeMove(move, this.player2);
+                }
                 else{
                     this.makeMove(move, this.player2);
                 }
-                //this.makeMove(move, currentPlayer);
                 let evaluation = this.minimax(depth - 1, alpha, beta, false).score;
                 this.undoMove(move);
                 if (evaluation > maxEval) {
@@ -108,6 +111,9 @@ class TicTacToe {
             let bestMove = null;
             for (let move of this.availableMoves()) {
                 if (game.ai == 2){ 
+                    this.makeMove(move, this.player1);
+                }
+                else if (game.ai == 1){
                     this.makeMove(move, this.player1);
                 }
                 else{
@@ -176,6 +182,7 @@ $(document).ready(function() {
         game.player1 = null;
         game.player2 = null;
         game.ai = 0;
+        game.rand_holder = 0;
 
         // Reset the board
         $('.cell').text('');
@@ -193,7 +200,7 @@ $(document).ready(function() {
         $('.cell').click(function(){
             if(!gameInProgress || game.player1 == null){
                 $('.error-TTT').removeClass('hide');
-                $('.error-TTT').text("Whoops! Please Select the Game Mode & X or O for your Player");
+                $('.error-TTT').text("Whoops! Please Select the Game Mode & X or O to play😊");
             }
             else{
                 $('.error-TTT').addClass('hide');
@@ -204,6 +211,10 @@ $(document).ready(function() {
     function chooseSymbol(symbol, player, button, otherButton) {
         if(game.game_mode == 3){
             return;
+        }
+        if(!game.allCellsEmpty()){
+            $('.error-TTT').removeClass('hide');
+            $('.error-TTT').text("Please Press Restart to Change Game Options😊");
         }
         if(game.allCellsEmpty()){
             var otherPlayer = (player === '#symbol-1') ? '#symbol-2' : '#symbol-1';
@@ -281,6 +292,10 @@ $(document).ready(function() {
                 TwoPlayer();
             }
         }
+        if(!game.allCellsEmpty()){
+            $('.error-TTT').removeClass('hide');
+            $('.error-TTT').text("Please Press Restart to Change Game Options😊");
+        }
     });
 
     $('#Ai-against-Ai-TicTacToe').click(function(){
@@ -293,6 +308,10 @@ $(document).ready(function() {
                 AgainstAI();
             }
         }
+        if(!game.allCellsEmpty()){
+            $('.error-TTT').removeClass('hide');
+            $('.error-TTT').text("Please Press Restart to Change Game Options😊");
+        }
     });
 
     $('#Ai-vs-Ai-TicTacToe').click(function(){
@@ -301,6 +320,10 @@ $(document).ready(function() {
             chooseMode(3, 'AI vs AI', this);  
             $('.error-TTT').addClass('hide');
             AIvsAI();
+        }
+        if(!game.allCellsEmpty()){
+            $('.error-TTT').removeClass('hide');
+            $('.error-TTT').text("Please Press Restart to Change Game Options😊");
         }
     });
 
@@ -355,7 +378,7 @@ $(document).ready(function() {
                 if (game.gameOver()) {
                     if (game.winner(currentPlayer)) {
                         $('.currentPlayer-TTT').addClass('hide');
-                        $('.announce-TTT').removeClass('hide').text(currentPlayer + " is the winner!!👑");
+                        $('.announce-TTT').removeClass('hide').text("You are the winner!!👑");
                     } else if (game.boardFull()) {
                         $('.currentPlayer-TTT').addClass('hide');
                         $('.announce-TTT').removeClass('hide').text("It's a draw!😊");
@@ -401,7 +424,6 @@ $(document).ready(function() {
     });
 
     function beginBattle() {
-        let rand_holder = 0;
         $('#AIvsAI').addClass('hide');
         $('.currentPlayer-TTT').removeClass('hide');
         let currentPlayer = (game.ai === 2) ? game.player1 : game.player2;
@@ -410,7 +432,7 @@ $(document).ready(function() {
                 //if AI-1 first move then random generate
                 if (game.availableMoves().length === 9) {
                     let randomPosition = Math.floor(Math.random() * 9);
-                    rand_holder = randomPosition;
+                    game.rand_holder = randomPosition;
                     game.makeMove(randomPosition, game.player1);
                     $('.currentPlayer-TTT').text(game.playerName1 +"'s Turn!");
                     // Switch to AI-2's turn
@@ -431,7 +453,7 @@ $(document).ready(function() {
                     placeholder = true;
                     while(placeholder){
                         let randomPosition2 = Math.floor(Math.random() * 9);
-                        if(randomPosition2 != rand_holder){
+                        if(randomPosition2 != game.rand_holder){
                             setTimeout(() => {
                                 game.makeMove(randomPosition2, game.player2);
                                 $(`.cell[data-position="${randomPosition2}"]`).text(game.player2);
