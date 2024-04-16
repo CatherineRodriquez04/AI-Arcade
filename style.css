@@ -141,11 +141,11 @@ Created by Catherine Rodriquez
 
 #tic-tac-toe-play:hover, #directions-tictactoe:hover, #TTTmenu-to-start:hover, #creator-menu:hover, #creator-to-start:hover, 
 #Ai-vs-Ai-TicTacToe:hover, #Ai-against-Ai-TicTacToe:hover, #Two-Player-TicTacToe:hover, #reset:hover, #back-TicTacToe:hover, #AIvsAI:hover,
-#chooseX:hover, #chooseX2:hover, #chooseO:hover, #chooseO2:hover {
+#chooseX:hover, #chooseX2:hover, #chooseO:hover, #chooseO2:hover, #sumButton-TTT:hover, #gameModeButton-TTT:hover {
     transform: scale(1.1); 
 }
 
-#directions-tictactoe, #TTTmenu-to-start, #creator-menu, #creator-to-start{
+#directions-tictactoe, #TTTmenu-to-start, #creator-menu, #creator-to-start, #sumButton-TTT, #gameModeButton-TTT{
     background-color: grey;
     color: black;
     padding: 8px;
@@ -157,6 +157,18 @@ Created by Catherine Rodriquez
     cursor: pointer;
     transition: transform 0.3s ease;
 }
+
+.start-TTT, .tictactoe-menu{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sum-TTT, .gameMode-TTT{
+    align-items: right;
+    display: flex;
+    justify-content: right;
+}
+
 
 .directions{
     display: flex;
@@ -214,4 +226,39 @@ Created by Catherine Rodriquez
     font-size: 25px;
     text-align: center;
     margin-top: 1em;
+}
+
+.modal, .modal2 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: none;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content-TTT, .modal-mode-content-TTT {
+    background-color: #fefefe;
+    margin: 25% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    text-align: center;
+    font-size: 20px;
+}
+
+.close-TTT, .close-mode-TTT {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-TTT:hover, .close-TTT:focus, .close-mode-TTT:hover, .close-mode-TTT:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

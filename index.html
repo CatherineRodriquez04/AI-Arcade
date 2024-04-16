@@ -41,6 +41,18 @@
         <main class = "background-TicTacToe">
             <section class="tictactoe-menu">
                 <button id="directions-tictactoe">MENU</button>
+                <div class = "gameMode-TTT">
+                    <button id="gameModeButton-TTT">MODE DESCRIPTION</button>
+                </div>
+                <div id="modeModal-TTT" class="modal2">
+                    <div class="modal-mode-content-TTT">
+                        <span class="close-mode-TTT">&times;</span>
+                        <h2>Game Mode Descriptions</h2>
+                        <p><b>Two Player: </b>Two human players take turns making moves</p>
+                        <p><b>Against AI: </b>One human player competes against an AI opponent</p>
+                        <p><b>AI vs AI: </b>Watch two AI players compete against each other (starting positions randomly generated)</p>
+                    </div>
+                </div>
             </section>
             <section class = "title-TicTacToe">
                 <h1>Tic Tac Toe</h1>
@@ -83,7 +95,6 @@
                 <div class="cell" data-position="7"></div>
                 <div class="cell" data-position="8"></div>
             </section>
-            <section class = "display-winner-TicTacToe"><!--still need to do!-->
 
             </section>
             <section class="controls-TicTacToe">
@@ -99,8 +110,21 @@
     </div>
     <div id="TicTacToe-Directions" class="hide-background">
         <main class="background-TicTacToe">
-            <section class="start">
+            <section class="start-TTT">
                 <button id="TTTmenu-to-start">EXIT</button>
+                <div class = "sum-TTT">
+                    <button id="sumButton-TTT">GAME SUMMARY</button>
+                </div>
+                <div id="summaryModal-TTT" class="modal">
+                    <div class="modal-content-TTT">
+                        <span class="close-TTT">&times;</span>
+                        <h2>Tic Tac Toe Game Summary:</h2>
+                        <p>This is a JavaScript implementation of the classic TicTacToe game. The game allows players to </p>
+                        <p>play against each other, play against an AI, or watch two AI players compete against each other.</p>
+                        <p>The AI uses the minimax algorithm with alpha-beta pruning to determine the best moves.</p>
+                        <p>Choose the game mode and follow the prompts to play. ENJOY!😊</p>
+                    </div>
+                </div>
             </section>
             <section class = "title-TicTacToe">
                 <h2>Directions:</h2>

@@ -156,17 +156,6 @@ $(document).ready(function() {
     $('.currentPlayer-TTT').addClass('hide');
     $('#AIvsAI').addClass('hide');
 
-    //ensure player selects a mode and symbol
-    $('.cell').click(function(){
-        if(!gameInProgress){
-            $('.error-TTT').removeClass('hide');
-            $('.error-TTT').text("Whoops! Please Select the Game Mode & X or O for your Player");
-        }
-        else{
-            $('.error-TTT').addClass('hide');
-        }
-    });
-
     //reset button -> will need to keep implementing
     $('#reset').click(function() {
         // Reset the symbols to default (empty)
@@ -324,6 +313,17 @@ $(document).ready(function() {
         if(!game.allCellsEmpty()){
             $('.error-TTT').removeClass('hide');
             $('.error-TTT').text("Please Press Restart to Change Game Options😊");
+        }
+    });
+
+    //ensure player selects a mode and symbol
+    $('.cell').click(function(){
+        if(game.player1 == null){
+            $('.error-TTT').removeClass('hide');
+            $('.error-TTT').text("Whoops! Please Select the Game Mode & X or O to play😊");
+        }
+        else{
+            $('.error-TTT').addClass('hide');
         }
     });
 
