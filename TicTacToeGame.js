@@ -494,5 +494,27 @@ $(document).ready(function() {
         }
     }
 
+    function showWinningLine(winningCells) {
+        const line = document.getElementById('line');
+
+        //find the position of the first and last cell in the winning combination
+        const firstCellPos = winningCells[0].getBoundingClientRect();
+        const lastCellPos = winningCells[winningCells.length - 1].getBoundingClientRect();
+
+        //calculate the position and length of the line based on the cells
+        const top = (firstCellPos.top + lastCellPos.bottom) / 2;
+        const left = (firstCellPos.left + lastCellPos.right) / 2;
+        const width = Math.sqrt(Math.pow(lastCellPos.right - firstCellPos.left, 2) + Math.pow(lastCellPos.bottom - firstCellPos.top, 2));
+        const angle = Math.atan2(lastCellPos.bottom - firstCellPos.top, lastCellPos.right - firstCellPos.left) * 180 / Math.PI;
+
+        //set the position and rotation of the line
+        line.style.top = `${top}px`;
+        line.style.left = `${left}px`;
+        line.style.width = `${width}px`;
+        line.style.transform = `translateX(-50%) rotate(${angle}deg)`;
+
+        //show the line
+        line.style.display = 'block';
+    }
 });
 
