@@ -98,6 +98,7 @@ Created by Catherine Rodriquez
     display: none;
 }
 
+
 .board-TicTacToe{
     margin: 20px auto 0;
     display: grid;
@@ -120,17 +121,17 @@ Created by Catherine Rodriquez
     cursor: pointer;
 }
 
-/* .line-TTT {
-    position: absolute; 
-    background-color: red;
-    width: 5px; 
-    height: calc(100% + 6px); 
-    top: 0;
-    left: 0%; 
-    transform: translateX(-50%); 
-    z-index: -1;
-    display: none; 
-} */
+.win{
+    background-color: lightgreen;
+}
+
+.lost{
+    background-color: lightcoral;
+}
+
+.cell.tie{
+    background-color: lightblue;
+}
 
 .playerX{
     color:aliceblue;
@@ -320,3 +321,4 @@ Created by Catherine Rodriquez
     text-decoration: none;
     cursor: pointer;
 }
+

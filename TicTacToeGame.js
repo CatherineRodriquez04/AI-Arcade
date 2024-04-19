@@ -15,6 +15,10 @@ class TicTacToe {
         this.playerName2 = 'AI-2';
         this.ai = 0;
         this.rand_holder = 0;
+        this.winningValues = [0,0,0];
+        this.value1 = 0;
+        this.value2 = 0;
+        this.value3 = 0;
     }
 
     clearBoard() {
@@ -36,6 +40,10 @@ class TicTacToe {
         if (player === null) return false;
         for (let combo of this.winCombo) {
             if (combo.every(pos => this.board[pos] === player)) {
+                this.winningValues = combo;
+                this.value1 = this.winningValues[0];
+                this.value2 = this.winningValues[1];
+                this.value3 = this.winningValues[2];
                 return true;
             }
         }
@@ -158,32 +166,44 @@ $(document).ready(function() {
 
     //reset button -> will need to keep implementing
     $('#reset').click(function() {
-        // Reset the symbols to default (empty)
+        //reset the symbols to default (empty)
         $('.symbol-1 span').text('');
         $('.symbol-2 span').text('');
 
-        // Remove the 'clicked' class from all symbol buttons
+        //remove the 'clicked' class from all symbol buttons
         $('.symbol-button').removeClass('clicked');
         $('.mode-button').removeClass('clicked');
     
-        // Reset game mode and players
+        //reset game mode and players
         game.game_mode = null;
         game.player1 = null;
         game.player2 = null;
         game.ai = 0;
         game.rand_holder = 0;
+        game.winningValues = [0,0,0];
 
-        // Reset the board
+        //reset the board
         $('.cell').text('');
         game.clearBoard();
+        $(`.cell[data-position="${game.value1}"]`).removeClass('win');
+        $(`.cell[data-position="${game.value2}"]`).removeClass('win');
+        $(`.cell[data-position="${game.value3}"]`).removeClass('win');
+        $(`.cell[data-position="${game.value1}"]`).removeClass('lost');
+        $(`.cell[data-position="${game.value2}"]`).removeClass('lost');
+        $(`.cell[data-position="${game.value3}"]`).removeClass('lost');
+        $(`.cell[data-position]`).removeClass('tie');
 
-        // Hide any error or announcement messages
+        game.value1 = 0;
+        game.value2 = 0;
+        game.value3 = 0;
+
+        //hide any error or announcement messages
         $('.error-TTT').addClass('hide');
         $('.currentPlayer-TTT').addClass('hide');
         $('.announce-TTT').addClass('hide');
         $('#AIvsAI').addClass('hide');
 
-        // Set game in progress flag to false
+        //set game in progress flag to false
         gameInProgress = false;
         $('.cell').off('click');
         $('.cell').click(function(){
@@ -277,7 +297,6 @@ $(document).ready(function() {
             chooseMode(1, 'Two Player', this);
             if(game.player1 != null){
                 $('.error-TTT').addClass('hide');
-                $('.currentPlayer-TTT').text(game.player1 + "'s Turn!");
                 TwoPlayer();
             }
         }
@@ -293,7 +312,6 @@ $(document).ready(function() {
             chooseMode(2, 'Against AI', this);
             if(game.player1 != null){
                 $('.error-TTT').addClass('hide');
-                $('.currentPlayer-TTT').text(game.player1 + "'s Turn!");
                 AgainstAI();
             }
         }
@@ -329,8 +347,10 @@ $(document).ready(function() {
 
     function TwoPlayer(){
         $('#AIvsAI').addClass('hide');
-        let currentPlayer = game.player1; // Start with player 1
-        $('.currentPlayer-TTT').removeClass('hide');
+        //randomly determine which player goes first
+        const startingPlayer = Math.random() < 0.5 ? game.player1 : game.player2;
+        $('.currentPlayer-TTT').removeClass('hide').text(startingPlayer + "'s Turn!");
+        let currentPlayer = startingPlayer; // Start with player 1
         $('.cell').click(function() {
             if (!gameInProgress) {
                 console.log("Please select game mode and player symbol first.");
@@ -345,12 +365,16 @@ $(document).ready(function() {
                     if (game.winner(currentPlayer)) {
                         console.log(currentPlayer + " wins!");
                         $('.currentPlayer-TTT').addClass('hide');
+                        $(`.cell[data-position="${game.value1}"]`).addClass('win');
+                        $(`.cell[data-position="${game.value2}"]`).addClass('win');
+                        $(`.cell[data-position="${game.value3}"]`).addClass('win');
                         $('.announce-TTT').removeClass('hide').text(currentPlayer + " is the winner!!👑");
                         return
                     } 
                     else if (game.boardFull()) {
                         console.log("It's a draw!");
                         $('.currentPlayer-TTT').addClass('hide');
+                        $(`.cell`).addClass('tie');
                         $('.announce-TTT').removeClass('hide').text("It's a draw!😊");
                         return
                     }
@@ -367,8 +391,21 @@ $(document).ready(function() {
     }
 
     function AgainstAI(){
+        //randomly determine the starting player
+        const startingPlayer = Math.random() < 0.5 ? game.player1 : game.player2;
         $('#AIvsAI').addClass('hide');
-        let currentPlayer = game.player1; // Start with player 1
+        let currentPlayer = startingPlayer; 
+        if(startingPlayer == game.player1){
+            $('.currentPlayer-TTT').removeClass('hide').text(startingPlayer + "'s Turn!");
+        } 
+        else{
+            $('.currentPlayer-TTT').removeClass('hide').text("AI's Turn!");
+            setTimeout(() => {
+                game.playAI(game.player2);
+                currentPlayer = game.player1; // Update the current player
+                $('.currentPlayer-TTT').text(currentPlayer + "'s Turn!");
+            }, 500);
+        }
         $('.currentPlayer-TTT').removeClass('hide');
         $('.cell').click(function() {
             const position = $(this).data('position');
@@ -378,9 +415,13 @@ $(document).ready(function() {
                 if (game.gameOver()) {
                     if (game.winner(currentPlayer)) {
                         $('.currentPlayer-TTT').addClass('hide');
+                        $(`.cell[data-position="${game.value1}"]`).addClass('win');
+                        $(`.cell[data-position="${game.value2}"]`).addClass('win');
+                        $(`.cell[data-position="${game.value3}"]`).addClass('win');
                         $('.announce-TTT').removeClass('hide').text("You are the winner!!👑");
                     } else if (game.boardFull()) {
                         $('.currentPlayer-TTT').addClass('hide');
+                        $(`.cell`).addClass('tie');
                         $('.announce-TTT').removeClass('hide').text("It's a draw!😊");
                     }
                 } else {
@@ -393,9 +434,13 @@ $(document).ready(function() {
                             game.playAI(game.player2);
                             if (game.winner(game.player2)) {
                                 $('.currentPlayer-TTT').addClass('hide');
+                                $(`.cell[data-position="${game.value1}"]`).addClass('lost');
+                                $(`.cell[data-position="${game.value2}"]`).addClass('lost');
+                                $(`.cell[data-position="${game.value3}"]`).addClass('lost');
                                 $('.announce-TTT').removeClass('hide').text("Oh no! The AI won!😔");
                             } else if (game.boardFull()) {
                                 $('.currentPlayer-TTT').addClass('hide');
+                                $(`.cell`).addClass('tie');
                                 $('.announce-TTT').removeClass('hide').text("It's a draw!😊");
                             }
                             currentPlayer = (currentPlayer === game.player1) ? game.player2 : game.player1;
@@ -484,37 +529,22 @@ $(document).ready(function() {
     function displayResults(){
         if (game.winner(game.player1)) {
             $('.currentPlayer-TTT').addClass('hide');
+            $(`.cell[data-position="${game.value1}"]`).addClass('win');
+            $(`.cell[data-position="${game.value2}"]`).addClass('win');
+            $(`.cell[data-position="${game.value3}"]`).addClass('win');
             $('.announce-TTT').removeClass('hide').text(game.playerName1 + " has won the battle!👑");
         } else if (game.winner(game.player2)) {
             $('.currentPlayer-TTT').addClass('hide');
+            $(`.cell[data-position="${game.value1}"]`).addClass('win');
+            $(`.cell[data-position="${game.value2}"]`).addClass('win');
+            $(`.cell[data-position="${game.value3}"]`).addClass('win');
             $('.announce-TTT').removeClass('hide').text(game.playerName2 + " has won the battle!👑");
         } else if (game.boardFull()){
             $('.currentPlayer-TTT').addClass('hide');
+            $(`.cell`).addClass('tie');
             $('.announce-TTT').removeClass('hide').text("It's a draw!😊");
         }
     }
 
-    function showWinningLine(winningCells) {
-        const line = document.getElementById('line');
-
-        //find the position of the first and last cell in the winning combination
-        const firstCellPos = winningCells[0].getBoundingClientRect();
-        const lastCellPos = winningCells[winningCells.length - 1].getBoundingClientRect();
-
-        //calculate the position and length of the line based on the cells
-        const top = (firstCellPos.top + lastCellPos.bottom) / 2;
-        const left = (firstCellPos.left + lastCellPos.right) / 2;
-        const width = Math.sqrt(Math.pow(lastCellPos.right - firstCellPos.left, 2) + Math.pow(lastCellPos.bottom - firstCellPos.top, 2));
-        const angle = Math.atan2(lastCellPos.bottom - firstCellPos.top, lastCellPos.right - firstCellPos.left) * 180 / Math.PI;
-
-        //set the position and rotation of the line
-        line.style.top = `${top}px`;
-        line.style.left = `${left}px`;
-        line.style.width = `${width}px`;
-        line.style.transform = `translateX(-50%) rotate(${angle}deg)`;
-
-        //show the line
-        line.style.display = 'block';
-    }
 });
 
