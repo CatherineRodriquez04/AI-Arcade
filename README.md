@@ -1,4 +1,4 @@
-# TicTacToe
+# AI-Arcade - TicTacToe
 ## Description
 This is a Javascipt implementation of the classic TicTacToe game. The game allows players to play against each other, play against an AI, or watch two AI players compete against each other. The AI uses the minimax algorithm with alpha-beta pruning to determine the best moves. Choose the game mode and follow the prompts to play.
 
