@@ -5,6 +5,11 @@ $(document).ready(function() {
         $('#start-screen').addClass('hide-background');
         $('#TicTacToe').removeClass('hide-background');
     });
+    //start to wordSearch
+    $('#wordSearch-play').click(function(){
+        $('#start-screen').addClass('hide-background');
+        $('#wordSearch').removeClass('hide-background');
+    });
     //creator menu to start screen
     $('#creator-menu').click(function() {
         $('#start-screen').addClass('hide-background');
@@ -14,15 +19,25 @@ $(document).ready(function() {
     $('#back-TicTacToe').click(function(){
         $('#TicTacToe-Directions').addClass('hide-background');
         $('#TicTacToe').removeClass('hide-background');
-    })
+    });
     //tictactoe to menu
     $('#directions-tictactoe').click(function() {
         $('#TicTacToe').addClass('hide-background');
         $('#TicTacToe-Directions').removeClass('hide-background');
     });
-    //menu to start screen
+    //wordSearch to menu
+    $('#directions-wordSearch').click(function() {
+        $('#wordSearch').addClass('hide-background');
+        $('#wordSearch-Directions').removeClass('hide-background');
+    });
+    //TTTmenu to start screen
     $('#TTTmenu-to-start').click(function() {
         $('#TicTacToe-Directions').addClass('hide-background');
+        $('#start-screen').removeClass('hide-background');
+    });
+    //WSmenu to start screen
+    $('#WSmenu-to-start').click(function() {
+        $('#wordSearch-Directions').addClass('hide-background');
         $('#start-screen').removeClass('hide-background');
     });
     //creator info to start screen

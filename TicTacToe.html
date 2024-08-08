@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://font.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Itim&display=swap" rel="stylesheet">
+    <title>AI-rcade</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="TicTacToeGame.js"></script>
+    <script src="Menu.js"></script>
+</head>
+
+<body>
+    <div id="TicTacToe">
+        <main class="background-TicTacToe">
+            <section class="tictactoe-menu">
+                <button id="directions-tictactoe">MENU</button>
+                <div class="gameMode-TTT">
+                    <button id="gameModeButton-TTT">MODE DESCRIPTION</button>
+                </div>
+                <div id="modeModal-TTT" class="modal2">
+                    <div class="modal-mode-content-TTT">
+                        <span class="close-mode-TTT">&times;</span>
+                        <h2>Game Mode Descriptions</h2>
+                        <p><b>Two Player: </b>Two human players take turns making moves</p>
+                        <p><b>Against AI: </b>One human player competes against an AI opponent</p>
+                        <p><b>AI vs AI: </b>Watch two AI players compete against each other (starting positions randomly
+                            generated)</p>
+                    </div>
+                </div>
+            </section>
+            <section class="title-TicTacToe">
+                <h1>Tic Tac Toe</h1>
+            </section>
+            <section class="display-TicTacToe">
+                <div class="symbol-1">
+                    Player1 Symbol:
+                    <span></span>
+                </div>
+                <p>Please Select a Mode:</p>
+                <div class="symbol-2">
+                    Player2 Symbol:
+                    <span></span>
+                </div>
+            </section>
+            <section class="mode-options-TicTacToe">
+                <div class="choose-symbol">
+                    <button id="chooseX" class="symbol-button">X</button>
+                    <button id="chooseO" class="symbol-button">O</button>
+                </div>
+                <div class="player-modes-TicTacToe">
+                    <button id="Two-Player-TicTacToe" class="mode-button">Two Player</button>
+                    <button id="Ai-against-Ai-TicTacToe" class="mode-button">Against Ai</button>
+                    <button id="Ai-vs-Ai-TicTacToe" class="mode-button">Ai vs. Ai</button>
+                </div>
+                <div class="choose-symbol2">
+                    <button id="chooseX2" class="symbol-button">X</button>
+                    <button id="chooseO2" class="symbol-button">O</button>
+                </div>
+            </section>
+            <section class="board-TicTacToe">
+                <!-- Game board cells -->
+                <div class="cell" data-position="0"></div>
+                <div class="cell" data-position="1"></div>
+                <div class="cell" data-position="2"></div>
+                <div class="cell" data-position="3"></div>
+                <div class="cell" data-position="4"></div>
+                <div class="cell" data-position="5"></div>
+                <div class="cell" data-position="6"></div>
+                <div class="cell" data-position="7"></div>
+                <div class="cell" data-position="8"></div>
+                <div class="line-TTT" id="line-TTT"></div>
+            </section>
+
+            </section>
+            <section class="controls-TicTacToe">
+                <button id="reset">Reset</button>
+            </section>
+            <section class="control-AIvsAI">
+                <button id="AIvsAI">Begin Ai vs. Ai</button>
+            </section>
+            <section class="currentPlayer-TTT"></section>
+            <section class="error-TTT"></section>
+            <section class="announce-TTT"></section>
+        </main>
+    </div>
+    <div id="TicTacToe-Directions" class="hide-background">
+        <main class="background-TicTacToe">
+            <section class="start-TTT">
+                <button id="TTTmenu-to-start" onclick="returnToMain()">EXIT</button>
+                <script>
+                    function returnToMain() {
+                        window.location.href = "index.html"
+                    }
+                </script>
+                <div class="sum-TTT">
+                    <button id="sumButton-TTT">GAME SUMMARY</button>
+                </div>
+                <div id="summaryModal-TTT" class="modal">
+                    <div class="modal-content-TTT">
+                        <span class="close-TTT">&times;</span>
+                        <h2>Tic Tac Toe Game Summary:</h2>
+                        <p>This is a JavaScript implementation of the classic TicTacToe game. The game allows players to
+                            play against each other, play against an AI, or watch two AI players compete against each
+                            other. The AI uses the minimax algorithm with alpha-beta pruning to determine the best
+                            moves. Choose the game mode and follow the prompts to play. ENJOY!😊</p>
+                    </div>
+                </div>
+            </section>
+            <section class="title-TicTacToe">
+                <h2>Directions:</h2>
+            </section>
+            <section class="directions-container">
+                <div class="directions-box">
+                    <p>1. Choose player1/player2 symbol ('X' or 'O')</p>
+                    <p>2. Choose your game mode (Two Player, Against Ai, Ai vs. Ai)</p>
+                    <p>3. Select the box to place your mark on the board</p>
+                    <p>4. Wait for player2 to place their mark on the board</p>
+                    <p>5. Press 'reset' to restart the game</p>
+                </div>
+            </section>
+            <section class="return-game">
+                <button id="back-TicTacToe">Return to Game!</button>
+            </section>
+        </main>
+    </div>
+</body>
