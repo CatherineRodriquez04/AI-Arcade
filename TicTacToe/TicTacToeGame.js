@@ -1,4 +1,8 @@
-//TicTacToe Game!
+
+/*
+TicTacToe Game!
+Created by Catherine Rodriquez
+*/
 
 class TicTacToe {
     constructor() {

@@ -1,0 +1,343 @@
+/*
+Created by Catherine Rodriquez
+*/
+
+/* makes all screens the same font */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Itim", cursive;
+}
+
+  /* hide background class used to alternate between  different game screens */
+.hide-background {
+    display: none;
+}
+
+/* background tic-tac-toe */
+.background-TicTacToe {
+    background-color: white;
+    height: 100vh;
+    padding-top: 1px;
+}
+
+/* tic-tac-toe title */
+.title-TicTacToe {
+    color: black;
+    text-align: center;
+    font-size: 40px;
+    margin-top: 2%;
+}
+
+/* tic-tac-toe word displays */
+.display-TicTacToe {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: red;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 0em;
+}
+
+/* tic-toe-toe word/sentence display for winner, invalid move, and current player's turn */
+.error-TTT,
+.announce-TTT,
+.currentPlayer-TTT {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 32px;
+    text-align: center;
+    margin-top: 0.5em;
+}
+
+/* tic-tac-toe symbol button (class) display */
+.symbol-1,
+.symbol-2 {
+    margin-top: 1em;
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-bottom: 0em;
+}
+
+/* tic-tac-toe grid */
+.board-TicTacToe {
+    margin: 20px auto 0;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 9px;
+    position: relative;
+}
+
+/* tic-tac-toe grid */
+.cell {
+    border: 3px solid royalblue;
+    background-color: lightgray;
+    min-width: 100px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+/* win tic-tac-toe display on grid */
+.win {
+    background-color: lightgreen;
+}
+
+/* lost tic-tac-toe display on grid */
+.lost {
+    background-color: lightcoral;
+}
+
+/* tie tic-tac-toe display on grid */
+.cell.tie {
+    background-color: lightblue;
+}
+
+.playerX {
+    color: aliceblue;
+}
+
+.playerO {
+    color: aliceblue;
+}
+
+.controls-TicTacToe,
+.control-AIvsAI {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+/* layout for game mode options tic-tac-toe */
+.mode-options-TicTacToe {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.return-game,
+.play {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1.5em;
+}
+
+/* design for buttons in tic-tac-toe */
+#Ai-vs-Ai-TicTacToe,
+#Ai-against-Ai-TicTacToe,
+#Two-Player-TicTacToe,
+#reset,
+#back-TicTacToe,
+#AIvsAI {
+    background-color: red;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 20px;
+    margin-left: 1em;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* enlarges the button when hovering over it */
+#directions-tictactoe:hover,
+#TTTmenu-to-start:hover,
+#Ai-vs-Ai-TicTacToe:hover,
+#Ai-against-Ai-TicTacToe:hover,
+#Two-Player-TicTacToe:hover,
+#reset:hover,
+#back-TicTacToe:hover,
+#AIvsAI:hover,
+#chooseX:hover,
+#chooseX2:hover,
+#chooseO:hover,
+#chooseO2:hover,
+#sumButton-TTT:hover,
+#gameModeButton-TTT:hover
+{
+    transform: scale(1.1);
+}
+
+/* grey buttons */
+#directions-tictactoe,
+#TTTmenu-to-start,
+#sumButton-TTT,
+#gameModeButton-TTT {
+    background-color: grey;
+    color: black;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+    margin-left: 1em;
+    margin-top: 1em;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.start-TTT,
+.tictactoe-menu 
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* summary and game mode description button for tictactoe */
+.sum-TTT,
+.gameMode-TTT {
+    align-items: right;
+    display: flex;
+    justify-content: right;
+    margin-right: 1em;
+}
+
+/* directions box tictactoe */
+.directions-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* directions box tictactoe */
+.directions-box {
+    color: black;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 0em;
+    width: 800px;
+    height: 250px;
+    background-color: lightgrey;
+    border: 1px solid grey;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: left;
+    line-height: 50px;
+}
+
+/* buttons for X and O choice tictactoe */
+#chooseX,
+#chooseX2,
+#chooseO,
+#chooseO2 {
+    background-color: royalblue;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 20px;
+    margin-left: 1em;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* buttons for X and O choice tictactoe */
+#chooseX {
+    margin-left: 8.5em;
+    margin-right: 0.5em;
+}
+
+/* buttons for X and O choice tictactoe */
+#chooseO,
+#chooseX2 {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+/* buttons for X and O choice tictactoe */
+#chooseO2 {
+    margin-right: 8.5em;
+    margin-left: 0.5em;
+}
+
+/* buttons for X and O choice tictactoe */
+#chooseX.clicked,
+#chooseX2.clicked,
+#chooseO.clicked,
+#chooseO2.clicked {
+    background-color: rgb(129, 210, 245);
+    color: black;
+}
+
+/* buttons for game mode choice tictactoe */
+#Ai-vs-Ai-TicTacToe.clicked,
+#Ai-against-Ai-TicTacToe.clicked,
+#Two-Player-TicTacToe.clicked {
+    background-color: rgb(228, 154, 154);
+    color: black;
+}
+
+/* buttons for game mode choice tictactoe */
+.game-selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.modal,
+.modal2 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: none;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content-TTT,
+.modal-mode-content-TTT {
+    background-color: #fefefe;
+    margin: 25% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    text-align: center;
+    font-size: 20px;
+}
+
+.close-TTT,
+.close-mode-TTT {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-TTT:hover,
+.close-TTT:focus,
+.close-mode-TTT:hover,
+.close-mode-TTT:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* used to hide displays -> keep at bottom*/
+.hide {
+    display: none;
+}
+
