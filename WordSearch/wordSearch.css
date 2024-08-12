@@ -2,7 +2,13 @@
 Created by Catherine Rodriquez
 */
 
-
+/* 
+/* makes all screens the same font */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Itim", cursive;
+} */
 
 /* display for exit button */
 #return{
